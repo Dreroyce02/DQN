@@ -93,5 +93,4 @@ while True:
     if epsilon > min_epsilon:
         epsilon *= epsilon_dec
         epsilon = max(min_epsilon, epsilon)
-    if reward==-10:
-        agent.player.start()
+    
