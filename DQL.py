@@ -51,9 +51,10 @@ class DQN_Agent:
         return self.model.predict(state.reshape(-1, *state.shape)/255)[0]
 
     def train(self):
-        print("training...")
+        global epsilon
         if len(self.replay_mem)<min_mem:
             return None
+        print(epsilon)
         minibatch = random.sample(self.replay_mem, minibatch_size)
         current_states = np.array([transition[0] for transition in minibatch])/255
         current_qs_list = self.model.predict(current_states)
@@ -78,7 +79,7 @@ class DQN_Agent:
             self.counter = 0
 
 agent = DQN_Agent()
-        
+_  = 0        
 while True:
     current_state = get_state()
     if np.random.random()>epsilon:
@@ -90,7 +91,8 @@ while True:
     reward = gf.reward_func()
     agent.update_replay_mem((current_state, action, reward, new_state))
     agent.train()       
-    if epsilon > min_epsilon:
+    if epsilon > min_epsilon and _ == 999:
+        _ = 0
         epsilon *= epsilon_dec
         epsilon = max(min_epsilon, epsilon)
-    
+    _ += 1
