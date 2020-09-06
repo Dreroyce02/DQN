@@ -7,7 +7,7 @@ import random
 from collections import deque
 import time
 
-bbox = (504,145,1101,246)
+bbox = (504,170,1101,246)
 epsilon = 1 #decrease to 0
 epsilon_dec = .9
 min_epsilon = 0
@@ -37,10 +37,12 @@ class DQN_Agent:
 
     def create_model(self):
         model = keras.models.Sequential()
-        model.add(keras.layers.Dense(100, input_dim=60297, activation='relu'))
-        model.add(keras.layers.Dense(50, activation='relu'))
-        model.add(keras.layers.Dense(25, activation='relu'))
-        model.add(keras.layers.Dense(3, activation='linear'))
+        model.add(keras.layers.Conv2D(256, (3,3), input_shape=(76,597,1), activation='relu'))
+        model.add(keras.layers.MaxPooling2D(pool_size=(2,2)))
+        model.add(keras.layers.Conv2D(256, (3,3), activation='relu'))
+        model.add(keras.layers.MaxPooling2D(pool_size=(2,2)))
+        model.add(keras.layers.Flatten())
+        model.add(Dense(3,activation='linear')) 
         model.compile(loss='mse', optimizer='adam')
         return model
 
