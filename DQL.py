@@ -23,7 +23,7 @@ def choose_action(action_index, p):
     elif action_index==1:
         p.duck()
 
-def get_state():#array shape = 60297
+def get_state():
     return np.array(ImageGrab.grab(bbox=bbox).convert('L').getdata())
 
 class DQN_Agent:
