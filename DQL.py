@@ -42,7 +42,8 @@ class DQN_Agent:
         model.add(keras.layers.Conv2D(256, (3,3), activation='relu'))
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2)))
         model.add(keras.layers.Flatten())
-        model.add(keras.layers.Dense(3,activation='linear')) 
+        model.add(keras.layers.Dense(64,activation='relu'))
+        model.add(keras.layers.Dense(3,  activation='linear'))
         model.compile(loss='mse', optimizer='adam')
         return model
 
