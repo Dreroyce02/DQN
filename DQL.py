@@ -42,7 +42,7 @@ class DQN_Agent:
         model.add(keras.layers.Conv2D(256, (3,3), activation='relu'))
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2)))
         model.add(keras.layers.Flatten())
-        model.add(Dense(3,activation='linear')) 
+        model.add(keras.layers.Dense(3,activation='linear')) 
         model.compile(loss='mse', optimizer='adam')
         return model
 
@@ -87,7 +87,7 @@ while True:
     if np.random.random()>epsilon:
         action = np.argmax(agent.get_qs(current_state))
     else:
-        action = np.random.randint(0, 2)
+        action = random.randint(0, 2)
     choose_action(action, agent.player)
     new_state = get_state()
     reward = gf.reward_func()
