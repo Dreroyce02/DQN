@@ -37,7 +37,7 @@ class DQN_Agent:
 
     def create_model(self):
         model = keras.models.Sequential()
-        model.add(keras.layers.Conv2D(256, (3,3), input_shape=(597,76,1), activation='relu'))
+        model.add(keras.layers.Conv2D(256, (3,3), activation='relu'))
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2)))
         model.add(keras.layers.Conv2D(256, (3,3), activation='relu'))
         model.add(keras.layers.MaxPooling2D(pool_size=(2,2)))
